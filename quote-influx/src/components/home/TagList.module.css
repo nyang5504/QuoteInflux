@@ -1,0 +1,24 @@
+#taglist {
+    position: sticky;
+    background-color: #FFFFFF;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: 10px 0px;
+    padding-top: 0.4rem;
+}
+
+.title {
+    text-align: center;
+}
+
+.tagsContainer {
+    padding: 0.4rem 2rem 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.singleTag {
+    background-color: #E2E2E2;
+    border-radius: 6px;
+    padding: 0.4rem;
+}

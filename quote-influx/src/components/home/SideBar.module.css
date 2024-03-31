@@ -1,0 +1,30 @@
+#sidebar {
+    position: sticky;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    
+}
+
+#top-categories {
+    padding-top: 1.2rem;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+#categories-container {
+    display: flex;
+    max-height: 1rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 1rem 2rem;
+    overflow: hidden;
+    /* transition: max-height 1.0s ease-in-out */
+}
+
+.category {
+    text-decoration: underline;
+}
+
+#expand-button {
+    text-align: end;
+}
