@@ -1,0 +1,114 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.signup {
+    --text-color: #FFFFFF;
+    --input-text-color: #000000;
+    --text-area-color: #FFFFFF;
+    --background-color: #565656;
+    --button-color: #C7C7C7;
+    --switch-color: #727272;
+    --switch-background-color: #CECECE;
+}
+
+.signin {
+    --text-color: #000000;
+    --input-text-color: #FFFFFF;
+    --text-area-color: #565656;
+    --background-color: #FFFFFF;
+    --button-color: #C7C7C7;
+    --switch-color: #727272;
+    --switch-background-color: #CECECE;
+}
+
+.signin, .signup {
+    padding: 2rem;
+    border-radius: 20px;
+    min-width: 25rem;
+    min-height: 18rem;
+}
+
+.titleContainer {
+    color: var(--text-color);
+    text-align: center;
+    font-size: 1.6rem;
+}
+
+.formContainer {
+    display: flex;
+    background-color: #CECECE;
+    min-width: 10rem;
+    height: 70vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputAreaContainer{
+    text-align: center;
+}
+
+.inputLabelContainer {
+    
+}
+
+.labelContainer {
+
+}
+
+.inputContainer {
+
+}
+
+form {
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+input {
+    color: var(--text-color);
+    background-color: var(--text-area-color);
+}
+
+
+/*
+.titleContainer {
+    color: var(--text-color);
+    text-align: center;
+    font-size: 1.6rem;
+}
+
+.formContainer {
+    display: flex;
+    min-width: 10rem;
+    height: 70vh;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.inputAreaContainer{
+    display: flex;
+    gap: 1rem;
+}
+
+.labelContainer {
+    flex: 1;
+    text-align: end;
+}
+
+.inputContainer {
+    flex: 1;
+}
+
+form {
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+input {
+    color: var(--text-color);
+    background-color: var(--text-area-color);
+}
+
+*/

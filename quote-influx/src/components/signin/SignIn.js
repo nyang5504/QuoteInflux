@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from "./SignIn.module.css";
 
 const SignIn = () => {
 	const [username, setUsername] = useState('');
@@ -33,7 +34,7 @@ const SignIn = () => {
 
 	const handleCreateAccount = async (e) => {
 		e.preventDefault();
-		if(password!=confirmPassword) {
+		if(password!==confirmPassword) {
             console.log("Passwords don't match");
 			return;	
 		}
@@ -56,41 +57,113 @@ const SignIn = () => {
 		catch (error) {
 			console.error('Error:', error.message);
 		}
+
+		setUsername('');
+		setPassword('');
+		setConfirmPassword('');
 	}
 
 	return (
-		<form onSubmit={signup ? handleCreateAccount : handleSignIn}>
-			<div>
-				<label htmlFor="username">Username:</label>
-				<input
-					type="text"
-					id="username"
-					onChange={(e) => setUsername(e.target.value)}
-				/>
-			</div>
-			<div>
-				<label htmlFor="password">Password:</label>
-				<input
-					type="password"
-					id="password"
-					onChange={(e) => setPassword(e.target.value)}
-				/>
-			</div>
-			{signup &&
-			<div>
-				<label htmlFor="confirm">Confirm Password:</label>
-				<input
-					type="password"
-					id="confirm-password"
-					onChange={(e) => setConfirmPassword(e.target.value)}
-				/>
-			</div>
-			}
-			{error && <div>{error}</div>}
-			<div onClick={() => setSignUp(!signup)}>{signup ? "Sign In" : "Sign Up"}</div>
-			<button type="submit">{signup ? "Sign Up" : "Sign In"}</button>
-		</form>
+		<div className={styles.formContainer}>
+			<form className={signup? styles.signup : styles.signin} onSubmit={signup ? handleCreateAccount : handleSignIn}>
+				<div className={styles.titleContainer}>
+					{signup?
+						<div>
+							Create Account To Get Started
+						</div> :
+						<div>
+							Log In To Get Started
+						</div>
+					}
+				</div>
+				<br/>
+				<div className={styles.inputAreaContainer}>
+					<div className={styles.inputLabelContainer}>
+						<div className={styles.labelContainer}>
+							<label htmlFor="username">Username:</label>
+						</div>
+						<div className={styles.inputContainer}>
+							<input
+								value={username}
+								type="text"
+								id="username"
+								onChange={(e) => setUsername(e.target.value)}
+							/>
+						</div>
+					</div>
+
+					<div className={styles.inputLabelContainer}>
+						<div className={styles.labelContainer}>
+							<label htmlFor="password">Password:</label>
+						</div>
+						<div className={styles.inputContainer}>
+							<input
+								value={password}
+								type="password"
+								id="password"
+								onChange={(e) => setPassword(e.target.value)}
+							/>
+						</div>
+					</div>
+
+					<div className={styles.inputLabelContainer}>
+						<div className={styles.labelContainer}>
+							{signup && <label htmlFor="confirm-password">Confirm Password:</label>}
+						</div>
+						<div className={styles.inputContainer}>
+							{signup && 
+								<input
+									value={confirmPassword}
+									type="password"
+									id="confirm-password"
+									onChange={(e) => setConfirmPassword(e.target.value)}
+								/>
+							}
+						</div>
+					</div>
+				</div>
+				{error && <div>{error}</div>}
+				<div onClick={() => setSignUp(!signup)}>{signup ? "Sign In" : "Sign Up"}</div>
+				<button type="submit">{signup ? "Sign Up" : "Sign In"}</button>
+			</form>
+		</div>
+		
 	);
 };
 
 export default SignIn;
+
+/*
+				<div className={styles.inputAreaContainer}>
+					
+					<div className={styles.labelContainer}>
+						<label htmlFor="username">Username:</label>
+						<br/>
+						<label htmlFor="password">Password:</label>
+						<br/>
+						{signup && <label htmlFor="confirm">Confirm Password:</label>}
+					</div>
+					<div className={styles.inputContainer}>
+						<input
+							value={username}
+							type="text"
+							id="username"
+							onChange={(e) => setUsername(e.target.value)}
+						/>
+						<input
+							value={password}
+							type="password"
+							id="password"
+							onChange={(e) => setPassword(e.target.value)}
+						/>
+						{signup && 
+							<input
+								value={confirmPassword}
+								type="password"
+								id="confirm-password"
+								onChange={(e) => setConfirmPassword(e.target.value)}
+							/>
+						}
+					</div>
+				</div>
+*/
