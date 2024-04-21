@@ -76,7 +76,6 @@ const SignIn = () => {
 						</div>
 					}
 				</div>
-				<br/>
 				<div className={styles.inputAreaContainer}>
 					<div className={styles.inputLabelContainer}>
 						<div className={styles.labelContainer}>
@@ -123,8 +122,16 @@ const SignIn = () => {
 					</div>
 				</div>
 				{error && <div>{error}</div>}
-				<div onClick={() => setSignUp(!signup)}>{signup ? "Sign In" : "Sign Up"}</div>
-				<button type="submit">{signup ? "Sign Up" : "Sign In"}</button>
+				<div className={styles.buttonsContainer}>
+					<label className={styles.toggleSwitch}>
+						<span className={styles.leftSwitch}>Sign In</span>
+						<input type='checkbox' onChange={() => setSignUp(!signup)}></input>
+						<span className={styles.slider}></span>
+						<span className={styles.rightSwitch}>Sign Up</span>
+					</label>
+					<button type="submit">{signup ? "Sign Up" : "Sign In"}</button>
+				</div>
+				
 			</form>
 		</div>
 		

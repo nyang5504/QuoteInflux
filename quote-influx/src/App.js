@@ -9,6 +9,7 @@ function App() {
     <div className="App">
       <NavBar/>
       <SignIn/>
+      {/* <HomePage/> */}
     </div>
   );
 }

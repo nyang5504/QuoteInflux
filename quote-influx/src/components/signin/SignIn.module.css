@@ -1,6 +1,8 @@
 *{
     margin: 0;
     padding: 0;
+    /* box-sizing: border-box; */
+    /* transition: 0.4s ease-in-out; */
 }
 .signup {
     --text-color: #FFFFFF;
@@ -9,7 +11,7 @@
     --background-color: #565656;
     --button-color: #C7C7C7;
     --switch-color: #727272;
-    --switch-background-color: #CECECE;
+    --switch-background-color: #ffffff;
 }
 
 .signin {
@@ -18,8 +20,8 @@
     --text-area-color: #565656;
     --background-color: #FFFFFF;
     --button-color: #C7C7C7;
-    --switch-color: #727272;
-    --switch-background-color: #CECECE;
+    --switch-color: #dcdcdc;
+    --switch-background-color: #707070;
 }
 
 .signin, .signup {
@@ -45,19 +47,84 @@
 }
 
 .inputAreaContainer{
+    display: flex;
+    flex-direction: column;
     text-align: center;
-}
-
-.inputLabelContainer {
+    height: 12rem;
+    justify-content: center;
     
 }
 
-.labelContainer {
+.inputLabelContainer {
 
 }
 
-.inputContainer {
+.labelContainer {
+}
 
+.inputContainer {
+}
+
+.toggleSwitch {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    width: auto;
+    height: 34px;
+    line-height: 34px;
+    
+}
+
+.toggleSwitch input[type="checkbox"]{
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    height: 34px;
+    width: 120px;
+    border-radius: 34px;
+    /* top: 0; */
+    background-color: var(--switch-background-color);
+    left: calc(50% - 10px);
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 60px;
+    left: 4px;
+    bottom: 4px;
+    background-color: var(--switch-color);
+    border-radius: 34px;
+    z-index: 3;
+    transition: 0.2s;
+}
+
+.leftSwitch, .rightSwitch {
+    position: absolute;
+    display: inline-block;
+    z-index: 2;
+    font-size: 12px;
+    color: var(--input-text-color);
+    white-space: nowrap;
+}
+
+
+input:checked + .slider:before {
+    transform: translateX(50px);
+    /* transition: transform 0.25s ease-in-out; */
+}
+
+.leftSwitch {
+    left: 0;
+}
+
+.rightSwitch {
+    left: 3.65rem;
 }
 
 form {
@@ -66,10 +133,34 @@ form {
 }
 
 input {
-    color: var(--text-color);
+    color: var(--input-text-color);
     background-color: var(--text-area-color);
 }
 
+
+.buttonsContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    border: none;
+    background-color: var(--switch-background-color);
+    cursor: pointer;
+    color: var(--input-text-color);
+    border-radius: 34px;
+    width: 6rem;
+}
+
+/* .submitButton {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: var(--input-text-color);
+    border-radius: 34px;
+    background-color: var(--switch-background-color);
+    padding: 0 15px;
+} */
 
 /*
 .titleContainer {
