@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from "./SignIn.module.css";
 
-const SignIn = () => {
-	const [username, setUsername] = useState('');
+const SignIn = ({username, setUsername}) => {
+	const navigate = useNavigate();
 	const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 	const [error, setError] = useState('');
@@ -24,9 +25,13 @@ const SignIn = () => {
 			if (!response.ok) {
 				throw new Error('Sign-in failed');
 			}
-
+			const resJSON = await response.json();
+			const userToken = resJSON.token;
+			document.cookie = `token=${userToken}; path=/`;
 			// Sign-in successful
 			console.log('Sign-in successful');
+			console.log(resJSON);
+			navigate('/');
 		} catch (error) {
 			setError('Invalid username or password');
 		}
@@ -47,10 +52,10 @@ const SignIn = () => {
 				body: JSON.stringify({ username, password }),
 			})
 			if (response.ok) {
-				const userToken = await response.json();
-				
+				const resJSON = await response.json();
+				const userToken = resJSON.token;
 				document.cookie = `token=${userToken}; path=/`;
-				// Sign-in successful
+				// Sign-up successful
 				console.log('Sign-up successful');
 			}
 		}
@@ -69,7 +74,7 @@ const SignIn = () => {
 				<div className={styles.titleContainer}>
 					{signup?
 						<div>
-							Create Account To Get Started
+							Sign Up To Get Started
 						</div> :
 						<div>
 							Log In To Get Started
@@ -123,13 +128,14 @@ const SignIn = () => {
 				</div>
 				{error && <div>{error}</div>}
 				<div className={styles.buttonsContainer}>
+					<button type="submit">{signup ? "Sign Up" : "Sign In"}</button>
 					<label className={styles.toggleSwitch}>
 						<span className={styles.leftSwitch}>Sign In</span>
 						<input type='checkbox' onChange={() => setSignUp(!signup)}></input>
 						<span className={styles.slider}></span>
 						<span className={styles.rightSwitch}>Sign Up</span>
 					</label>
-					<button type="submit">{signup ? "Sign Up" : "Sign In"}</button>
+					
 				</div>
 				
 			</form>
@@ -139,38 +145,3 @@ const SignIn = () => {
 };
 
 export default SignIn;
-
-/*
-				<div className={styles.inputAreaContainer}>
-					
-					<div className={styles.labelContainer}>
-						<label htmlFor="username">Username:</label>
-						<br/>
-						<label htmlFor="password">Password:</label>
-						<br/>
-						{signup && <label htmlFor="confirm">Confirm Password:</label>}
-					</div>
-					<div className={styles.inputContainer}>
-						<input
-							value={username}
-							type="text"
-							id="username"
-							onChange={(e) => setUsername(e.target.value)}
-						/>
-						<input
-							value={password}
-							type="password"
-							id="password"
-							onChange={(e) => setPassword(e.target.value)}
-						/>
-						{signup && 
-							<input
-								value={confirmPassword}
-								type="password"
-								id="confirm-password"
-								onChange={(e) => setConfirmPassword(e.target.value)}
-							/>
-						}
-					</div>
-				</div>
-*/

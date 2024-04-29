@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const cors = require('cors');
-const userRoutes = require('./routes');
+const userRoutes = require('./routes/userRoutes');
+const collectionRoutes = require('./routes/collectionRoutes');
 
 // const url = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.yg6dtnq.mongodb.net/quoteinflux`;
 const url = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.yg6dtnq.mongodb.net/quoteinflux`;
@@ -22,6 +23,7 @@ mongoose.connect(url)
 
 // Use user routes
 app.use('/user', userRoutes);
+app.use('/collection', collectionRoutes);
 
 // Start the server
 const PORT = process.env.PORT;

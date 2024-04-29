@@ -8,7 +8,6 @@ const HomePage = () => {
     const [tagList, setTagList] = useState([]);
     const [currentQuote, setCurrentQuote] = useState({});
     const [currentTags, setCurrentTags] = useState([]);
-    console.log("current tags: ",currentTags);
     useEffect(() => {
         const fetchTags = async () => {
             try {

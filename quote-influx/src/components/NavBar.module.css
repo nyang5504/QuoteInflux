@@ -2,10 +2,12 @@
     display: flex;
     justify-content: space-between;
     margin: 0 1rem;
+    flex-wrap: wrap;
 }
 
 #logo {
     font-size: 2rem;
+    margin-right: 40px;
 }
 
 .navlinks {
