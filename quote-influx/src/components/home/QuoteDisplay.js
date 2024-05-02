@@ -3,7 +3,21 @@ import reload from './reload.svg';
 // import star from './star.svg';
 
 const QuoteDisplay = ({currentQuote, getRandom}) => {
-    const handleFavorite = () => {
+    const handleFavorite = async() => {
+        handleStarColor();
+        console.log(currentQuote);
+        const response = await fetch('http://localhost:8000/quote', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({currentQuote}),
+        });
+        
+    }
+
+
+    const handleStarColor = () => {
         const starSvg = document.getElementById('star');
         const polygon = starSvg.querySelector('polygon');
         const fill = polygon.getAttribute('fill');

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const collectionSchema = new mongoose.Schema({
+const quoteSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true
@@ -22,4 +22,4 @@ const collectionSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Collection', collectionSchema);
+module.exports = mongoose.model('Quote', quoteSchema);

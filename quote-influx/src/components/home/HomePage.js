@@ -7,7 +7,19 @@ import styles from './HomePage.module.css';
 const HomePage = () => {
     const [tagList, setTagList] = useState([]);
     const [currentQuote, setCurrentQuote] = useState({});
-    const [currentTags, setCurrentTags] = useState([]);
+
+    // Function to log all cookies
+	function logCookies() {
+		const cookies = document.cookie.split(';');
+		cookies.forEach(cookie => {
+			const [name, value] = cookie.trim().split('=');
+			console.log(name, value);
+		});
+	}
+
+	// Call the function to log cookies
+	logCookies();
+    
     useEffect(() => {
         const fetchTags = async () => {
             try {
@@ -43,8 +55,7 @@ const HomePage = () => {
             const response = await fetch(url, options);
             const data = await response.json();
             console.log(data);
-            setCurrentQuote({"quote": data.content, "author": data.author});
-            setCurrentTags(data.tags);
+            setCurrentQuote({"quote": data.content, "author": data.author, "id": data._id, "tags": data.tags});
         } catch (error) {
             console.error(error);
         }
@@ -55,7 +66,7 @@ const HomePage = () => {
             <SideBar tagList={tagList} getRandom={getRandom}></SideBar>
             <div id={styles.display}>
                 <QuoteDisplay currentQuote={currentQuote} getRandom={getRandom}></QuoteDisplay>
-                <TagList currentTags={currentTags}></TagList>
+                <TagList currentTags={currentQuote.tags}></TagList>
             </div>
         </div>
     )

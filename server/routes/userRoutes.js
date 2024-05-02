@@ -5,6 +5,7 @@ const router = express.Router();
 
 router
     .post('/signin', userController.getUser)
+    .post('/signintoken', userController.getUserToken)
     .post('/signup', userController.createUser)
     .put('/:id', userController.updateUser)
     .delete('/:id', userController.deleteUser);

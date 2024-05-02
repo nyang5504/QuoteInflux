@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from "./SignIn.module.css";
 
@@ -25,12 +25,8 @@ const SignIn = ({username, setUsername}) => {
 			if (!response.ok) {
 				throw new Error('Sign-in failed');
 			}
-			const resJSON = await response.json();
-			const userToken = resJSON.token;
-			document.cookie = `token=${userToken}; path=/`;
 			// Sign-in successful
 			console.log('Sign-in successful');
-			console.log(resJSON);
 			navigate('/');
 		} catch (error) {
 			setError('Invalid username or password');
@@ -52,10 +48,6 @@ const SignIn = ({username, setUsername}) => {
 				body: JSON.stringify({ username, password }),
 			})
 			if (response.ok) {
-				const resJSON = await response.json();
-				const userToken = resJSON.token;
-				document.cookie = `token=${userToken}; path=/`;
-				// Sign-up successful
 				console.log('Sign-up successful');
 			}
 		}
