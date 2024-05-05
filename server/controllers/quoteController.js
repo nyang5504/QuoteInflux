@@ -3,7 +3,7 @@ const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 
 exports.getCollection = async (req, res) => {
-    const token = req.headers.authorization;
+    const token = req.cookies.jwt;
     if(!token){
         return res.status(401).json({error: "No token provided"});
     }
@@ -18,7 +18,7 @@ exports.getCollection = async (req, res) => {
 }
 
 exports.saveQuote = async (req, res) => {
-    const token = req.headers.authorization;
+    const token = req.cookies.jwt;
     const quote = req.body;
     if(!token) {
         return res.status(401).json({error: 'Unauthorized'});
@@ -27,13 +27,9 @@ exports.saveQuote = async (req, res) => {
         const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
         console.log("payload: " + decodedToken);
         const username = decodedToken.username;
-        const version = await User.findOne({username}).select('jwtVersion');
-        if(decodedToken.jwtVersion != version) {
-            return res.status(401).json({error: 'Unauthorized'});
-        }
         const newQuote = new Quote({quote, username});
         const savedQuote = await newQuote.save();
-        return res.json(savedQuote);
+        res.json(savedQuote);
     } catch (error) {
         return res.status(401).json({error: 'Unauthorized'});
     }

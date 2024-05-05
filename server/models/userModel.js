@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   }
-});
+}, {collection: 'users'});
 
 // Hash the password before saving to the database
 userSchema.pre('save', async function(next) {

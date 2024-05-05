@@ -10,7 +10,8 @@ const Collection = () => {
                 method: 'GET',
                 headers: {
                     // 'Authorization': token
-                }
+                },
+                credentials: 'include'
             });
             setMyCollection(data.collectionArr);
         }

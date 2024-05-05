@@ -20,6 +20,7 @@ const SignIn = ({username, setUsername}) => {
 					'Content-Type': 'application/json',
 				},
 				body: JSON.stringify({ username, password }),
+				credentials: 'include'
 			});
 
 			if (!response.ok) {
@@ -80,7 +81,7 @@ const SignIn = ({username, setUsername}) => {
 						</div>
 						<div className={styles.inputContainer}>
 							<input
-								value={username}
+								defaultValue={""}
 								type="text"
 								id="username"
 								onChange={(e) => setUsername(e.target.value)}
@@ -94,7 +95,7 @@ const SignIn = ({username, setUsername}) => {
 						</div>
 						<div className={styles.inputContainer}>
 							<input
-								value={password}
+								defaultValue={""}
 								type="password"
 								id="password"
 								onChange={(e) => setPassword(e.target.value)}
@@ -109,7 +110,7 @@ const SignIn = ({username, setUsername}) => {
 						<div className={styles.inputContainer}>
 							{signup && 
 								<input
-									value={confirmPassword}
+									defaultValue={""}
 									type="password"
 									id="confirm-password"
 									onChange={(e) => setConfirmPassword(e.target.value)}
@@ -120,7 +121,7 @@ const SignIn = ({username, setUsername}) => {
 				</div>
 				{error && <div>{error}</div>}
 				<div className={styles.buttonsContainer}>
-					<button type="submit">{signup ? "Sign Up" : "Sign In"}</button>
+					<button className={styles.signinSignup} type="submit">{signup ? "Sign Up" : "Sign In"}</button>
 					<label className={styles.toggleSwitch}>
 						<span className={styles.leftSwitch}>Sign In</span>
 						<input type='checkbox' onChange={() => setSignUp(!signup)}></input>

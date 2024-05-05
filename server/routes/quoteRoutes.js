@@ -5,7 +5,7 @@ const router = express.Router();
 
 router
     .get('/collection', quoteController.getCollection)
-    .post('/quote/:id', quoteController.saveQuote)
+    .post('/quote', quoteController.saveQuote)
     .delete('/quote/:id', quoteController.deleteQuote);
 
 module.exports = router;

@@ -10,36 +10,13 @@ import Collection from './components/collection/Collection.js'
 
 function App() {
 	const [username, setUsername] = useState("");
-
-	useEffect(()=>{
-		const fetchToken = async() => {
-			try {
-				const response = await fetch('http://localhost:8000/user/signintoken', {
-					method: 'Post',
-					credentials: "include",
-					headers: {
-						'Content-Type': 'application/json',
-						// 'Access-Control-Allow-Credentials': true,
-					}
-				});
-				if(response.ok) {
-					console.log("Token authorized");
-				} else {
-					console.log("Token 401");
-				}
-			} catch (error) {
-				console.log("Error: " + error);
-			}
-		}
-		fetchToken();
-	}, []);
 	
   	return (
 		<div className="App">
 			<NavBar username={username}/>
 			<Routes>
 				<Route path='/' element={<HomePage/>}>HomePage</Route>
-				<Route path='/account' element={<Profile username={username}/>}>Profile</Route>
+				<Route path='/account' element={<Profile username={username} setUsername={setUsername}/>}>Profile</Route>
 				<Route path='/signin' element={<SignIn username={username} setUsername={setUsername}/>}>SignIn</Route>
 				<Route path='/collection' element={<Collection/>}>Collection</Route>
 			</Routes>

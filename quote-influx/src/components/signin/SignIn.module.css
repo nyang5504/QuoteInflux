@@ -77,7 +77,7 @@
     gap: 1rem;
 }
 
-button {
+.signinSignup {
     border: none;
     background-color: var(--switch-background-color);
     cursor: pointer;

@@ -20,6 +20,6 @@ const quoteSchema = new mongoose.Schema({
     tags: {
         type: [String]
     }
-});
+}, {collection: 'quotes'});
 
 module.exports = mongoose.model('Quote', quoteSchema);

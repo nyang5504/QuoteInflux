@@ -3,14 +3,12 @@ const User = require('../models/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-exports.getUserToken = async (req, res) => {
+exports.getProfile = async (req, res) => {
     const token = req.cookies.jwt;
-    console.log("Cookies: ", req.cookies);
     if(token) {
         try {
             const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
-            console.log("payload: ", decodedToken);
-            res.status(200).json({ message: "User login successfully with token!" });
+            res.status(200).json({username: decodedToken.username});
         } catch (error) {
             console.log("Bad token");
             res.status(401).json({message: "Unauthorized1"});
@@ -27,11 +25,11 @@ exports.getUser = async (req, res) => {
         if(user) {
             const validPassword = await bcrypt.compare(password, user.password);
             if (validPassword) {
-                const token = jwt.sign({username}, process.env.SECRET_KEY, {expiresIn: '6h'});
+                const token = jwt.sign({username}, process.env.SECRET_KEY);
                 res
-                .cookie('jwt', token, {httpOnly: true, maxAge: 6 * 60 * 60 * 1000})
-                .status(200)
-                .json({ message: "User login successfully!"});
+                 .cookie('jwt', token, {httpOnly: true, maxAge: 1000*60*60*24})
+                 .status(200)
+                 .json({ message: "User login successfully!"});
             } else {
                 res.status(401).json({message: "Incorrect username or password!"});
             }
@@ -66,6 +64,11 @@ exports.createUser = async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 };
+
+exports.logout = async(req, res) => {
+    res.clearCookie('jwt');
+    res.status(200).json({ message: 'User signed out.' });
+}
 
 exports.updateUser = async (req, res) => {
     const {username, password, newpass} = req.body;

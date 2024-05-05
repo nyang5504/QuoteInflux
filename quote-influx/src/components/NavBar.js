@@ -10,7 +10,7 @@ const NavBar = ({username}) => {
                 <ul>
                     <li><Link to='/'>Generate Quote</Link></li>
                     <li><Link to='/collection'>My Collection</Link></li>
-                    <li><Link to={username? '/account' : '/signin'}>Account</Link></li>
+                    <li><Link to={username?'/account':'/signin'}>Account</Link></li>
                 </ul>
             </div>
         </div>

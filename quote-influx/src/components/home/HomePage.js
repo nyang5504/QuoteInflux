@@ -8,17 +8,17 @@ const HomePage = () => {
     const [tagList, setTagList] = useState([]);
     const [currentQuote, setCurrentQuote] = useState({});
 
-    // Function to log all cookies
-	function logCookies() {
-		const cookies = document.cookie.split(';');
-		cookies.forEach(cookie => {
-			const [name, value] = cookie.trim().split('=');
-			console.log(name, value);
-		});
-	}
+    // // Function to log all cookies
+	// function logCookies() {
+	// 	const cookies = document.cookie.split(';');
+	// 	cookies.forEach(cookie => {
+	// 		const [name, value] = cookie.trim().split('=');
+	// 		console.log(name, value);
+	// 	});
+	// }
 
-	// Call the function to log cookies
-	logCookies();
+	// // Call the function to log cookies
+	// logCookies();
     
     useEffect(() => {
         const fetchTags = async () => {
