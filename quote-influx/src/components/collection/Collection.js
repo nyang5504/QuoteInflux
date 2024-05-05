@@ -1,30 +1,38 @@
 import { useEffect, useState } from "react";
-import QuoteDisplay from '../../components/home/QuoteDisplay';
-import TagList from '../../components/home/TagList';
+import QuoteCard from './QuoteCard';
+import styles from './Collections.module.css';
 const Collection = () => {
-
     const [myCollection, setMyCollection] = useState([]);
+
     useEffect(()=> {
         const getCollection = async () => {
-            const data = await fetch("http://localhost:8000/collection/collection", {
+            const response = await fetch("http://localhost:8000/collection/collection", {
                 method: 'GET',
                 headers: {
-                    // 'Authorization': token
+                    'Content-Type': 'application/json'
                 },
                 credentials: 'include'
             });
+            const data = await response.json();
+            console.log(data.collectionArr);
             setMyCollection(data.collectionArr);
         }
         getCollection();
     },[]);
+
     return(
-        <div>My Collection</div>
-        // {myCollection.map((myQuote) => (
-        //     <div>
-        //         <QuoteDisplay quote={{quote: myQuote.quote, author: myQuote.author}}/>
-        //         <TagList currentTags={myQuote.tags}/>
-        //     </div>
-        // ))}
+        <div className={styles.collectionContainer}>
+            <div className={styles.titleContainer}>
+                My Collection
+            </div>
+            <div className={styles.quotesContainer}>
+                {myCollection.map((myQuote) => (
+                    <div>
+                        <QuoteCard quote={{quote: myQuote.quote, author: myQuote.author, tags: myQuote.tags, id: myQuote.id}} myCollection={myCollection} setMyCollection={setMyCollection}/>
+                    </div>
+                ))}
+            </div>
+        </div>
     )
 }
 

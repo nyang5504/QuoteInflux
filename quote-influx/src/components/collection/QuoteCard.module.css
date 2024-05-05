@@ -1,0 +1,23 @@
+.cardsContainer {
+    border-radius: 10px;
+    border: 2px solid black;
+}
+
+.removeIcon {
+    direction: rtl;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    width: fit-content;
+}
+
+.cardQuote{
+    
+}
+
+.cardAuthor{
+
+}
+
+.cardTag{
+    
+}

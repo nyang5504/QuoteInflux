@@ -11,6 +11,28 @@ import Collection from './components/collection/Collection.js'
 function App() {
 	const [username, setUsername] = useState("");
 	
+    useEffect(() => {
+        const fetchProfile = async () => {
+            try{
+                const response = await fetch('http://localhost:8000/user/profile', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: "include"
+                })
+                if(response.ok){
+                    const json = await response.json();
+                    setUsername(json.username);
+                }
+            } catch(error){
+                console.log(error);
+            }
+        }
+        fetchProfile();
+    },[]);
+	
+
   	return (
 		<div className="App">
 			<NavBar username={username}/>
