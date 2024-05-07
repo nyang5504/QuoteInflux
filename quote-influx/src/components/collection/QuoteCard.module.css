@@ -1,6 +1,7 @@
-.cardsContainer {
+.cardContainer {
     border-radius: 10px;
     border: 2px solid black;
+    height: 15rem;
 }
 
 .removeIcon {

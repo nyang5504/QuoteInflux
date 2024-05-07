@@ -28,17 +28,18 @@ const QuoteDisplay = ({currentQuote, getRandom}) => {
     const unsaveQuote = async () => {
         try{
             const response = await fetch(`http://localhost:8000/collection/quote/${currentQuote.id}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            credentials: 'include'
-        });
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include'
+            });
+            //console.log(response);
         } catch(error) {
             console.log("unsave favorite: ", error);
         }
     }
-
+    
     useEffect(() => {
         const getQuote = async () => {
             try {
@@ -49,18 +50,22 @@ const QuoteDisplay = ({currentQuote, getRandom}) => {
                     },
                     credentials: 'include'
                 });
-                if(response.ok) {
+                if(response.status == 200) {
+                    console.log("should be yellow");
                     setFavorite(true);
                 } 
-                else if(!response.ok){
+                else{
+                    console.log("should be white");
                     setFavorite(false);
-                    return;
                 }
+                console.log(response);
             } catch (e) {
-                console.log(e);
+                console.log("id undefined: " + e);
             }
         }
-        getQuote();
+        if(currentQuote.id){
+            getQuote();
+        }
     }, [currentQuote]);
 
     return(

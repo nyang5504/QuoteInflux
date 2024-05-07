@@ -20,7 +20,7 @@ const QuoteCard = ({quote, myCollection, setMyCollection}) => {
     }
 
     return(
-        <div className={styles.cardsContainer}>
+        <div className={styles.cardContainer}>
             <div className={styles.removeIcon} onClick={handleRemove}>X</div>
             <div className={styles.cardQuote}>{quote.quote}</div>
             <div className={styles.cardAuthor}>- {quote.author}</div>

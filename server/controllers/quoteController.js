@@ -30,10 +30,12 @@ exports.getQuote = async (req, res) => {
         const username = decodedToken.username;
         const found = await Quote.findOne({username, id});
         if(found){
+            console.log("should be yellow");
             return res.status(200).json({message: "yellow this"});
         }
         else{
-            return res.status(100).json({message: "white this"});
+            console.log("should be white");
+            return res.status(300).json({message: "white this"});
         }
     } catch (e) {
         console.log(e);

@@ -16,6 +16,7 @@ app.use(cors({
   origin: 'http://localhost:3000',
   credentials: true
 }));
+
 app.use(express.json());
 app.use(cookieParser());
 
@@ -23,6 +24,11 @@ app.use(cookieParser());
 // Use user routes
 app.use('/user', userRoutes);
 app.use('/collection', quoteRoutes);
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
 
 // Connect to MongoDB
 mongoose.connect(url)

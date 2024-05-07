@@ -28,6 +28,7 @@ const HomePage = () => {
                 console.log("error: ", error);
             }
         }
+
         fetchTags();
         getRandom();
     }, [])

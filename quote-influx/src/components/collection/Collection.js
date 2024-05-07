@@ -14,7 +14,6 @@ const Collection = () => {
                 credentials: 'include'
             });
             const data = await response.json();
-            console.log(data.collectionArr);
             setMyCollection(data.collectionArr);
         }
         getCollection();
@@ -26,11 +25,14 @@ const Collection = () => {
                 My Collection
             </div>
             <div className={styles.quotesContainer}>
-                {myCollection.map((myQuote) => (
+                {myCollection ?
+                myCollection.map((myQuote) => (
                     <div>
                         <QuoteCard quote={{quote: myQuote.quote, author: myQuote.author, tags: myQuote.tags, id: myQuote.id}} myCollection={myCollection} setMyCollection={setMyCollection}/>
                     </div>
-                ))}
+                )):
+                <div>Login to see your collection</div>
+                }
             </div>
         </div>
     )
