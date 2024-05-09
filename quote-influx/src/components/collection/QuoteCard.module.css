@@ -1,7 +1,16 @@
 .cardContainer {
     border-radius: 10px;
-    border: 2px solid black;
-    height: 15rem;
+    height: 20rem;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0rem 2rem;
+    margin: 0 4px;
+    margin-top: 1.2rem;
+    position: relative;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.25);
 }
 
 .removeIcon {
@@ -9,16 +18,35 @@
     padding-right: 1rem;
     padding-top: 0.5rem;
     width: fit-content;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
 }
 
 .cardQuote{
-    
+    height: 11rem;
+    display: flex;
+    align-items: center;
 }
 
+.authorContainer{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: .4rem;
+}
 .cardAuthor{
+}
 
+.tagsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    width: 100%;
 }
 
 .cardTag{
-    
+    background-color: #E2E2E2;
+    padding: .3rem;
+    border-radius: .4rem;
 }

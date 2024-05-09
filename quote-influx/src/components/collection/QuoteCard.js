@@ -21,14 +21,19 @@ const QuoteCard = ({quote, myCollection, setMyCollection}) => {
 
     return(
         <div className={styles.cardContainer}>
+            
             <div className={styles.removeIcon} onClick={handleRemove}>X</div>
             <div className={styles.cardQuote}>{quote.quote}</div>
-            <div className={styles.cardAuthor}>- {quote.author}</div>
-            {
-                quote.tags.map((e)=>(
+            <div className={styles.authorContainer}>
+                <div className={styles.cardAuthor}>- {quote.author}</div>
+            </div>
+            
+            <div className={styles.tagsContainer}>
+                {quote.tags.map((e)=>(
                     <div className={styles.cardTag}>{e}</div>
-                ))
-            }
+                ))}
+            </div>
+            
         </div>
     );
 }
