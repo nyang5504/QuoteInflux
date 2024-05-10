@@ -46,9 +46,10 @@
     display: flex;
     background-color: #CECECE;
     min-width: 10rem;
-    height: 70vh;
+    min-height: 70vh;
     justify-content: center;
     align-items: center;
+    padding: 1rem 0rem;
 }
 
 .inputAreaContainer{
