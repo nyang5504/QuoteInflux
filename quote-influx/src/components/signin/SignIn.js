@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from "./SignIn.module.css";
 
-const SignIn = ({username, setUsername}) => {
+const SignIn = ({username, setUsername, error, setError}) => {
 	const navigate = useNavigate();
 	const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-	const [error, setError] = useState('');
 	const [signup, setSignUp] = useState(false);
+	const [errMsg, setErrMsg] = useState("");
 
 	const handleSignIn = async (e) => {
 		e.preventDefault();
@@ -29,8 +29,8 @@ const SignIn = ({username, setUsername}) => {
 			// Sign-in successful
 			console.log('Sign-in successful');
 			navigate('/');
-		} catch (error) {
-			setError('Invalid username or password');
+		} catch (e) {
+			setErrMsg('Invalid username or password');
 		}
 	};
 
@@ -50,15 +50,20 @@ const SignIn = ({username, setUsername}) => {
 			})
 			if (response.ok) {
 				console.log('Sign-up successful');
+				handleToggle();
 			}
 		}
-		catch (error) {
-			console.error('Error:', error.message);
+		catch (e) {
+			console.error('Error:', e.message);
 		}
+	}
 
+	const handleToggle = () => {
+		setSignUp(!signup);
 		setUsername('');
 		setPassword('');
 		setConfirmPassword('');
+		setErrMsg('');
 	}
 
 	return (
@@ -81,7 +86,9 @@ const SignIn = ({username, setUsername}) => {
 						</div>
 						<div className={styles.inputContainer}>
 							<input
-								defaultValue={""}
+								// defaultValue={""}
+								// className='inputs'
+								value={username}
 								type="text"
 								id="username"
 								onChange={(e) => setUsername(e.target.value)}
@@ -95,7 +102,9 @@ const SignIn = ({username, setUsername}) => {
 						</div>
 						<div className={styles.inputContainer}>
 							<input
-								defaultValue={""}
+								// className='inputs'
+								// defaultValue={""}
+								value={password}
 								type="password"
 								id="password"
 								onChange={(e) => setPassword(e.target.value)}
@@ -110,7 +119,9 @@ const SignIn = ({username, setUsername}) => {
 						<div className={styles.inputContainer}>
 							{signup && 
 								<input
-									defaultValue={""}
+									// className='inputs'
+									// defaultValue={""}
+									value={confirmPassword}
 									type="password"
 									id="confirm-password"
 									onChange={(e) => setConfirmPassword(e.target.value)}
@@ -119,12 +130,12 @@ const SignIn = ({username, setUsername}) => {
 						</div>
 					</div>
 				</div>
-				{error && <div>{error}</div>}
+				{errMsg && <div>{errMsg}</div>}
 				<div className={styles.buttonsContainer}>
 					<button className={styles.signinSignup} type="submit">{signup ? "Sign Up" : "Sign In"}</button>
 					<label className={styles.toggleSwitch}>
 						<span className={styles.leftSwitch}>Sign In</span>
-						<input type='checkbox' onChange={() => setSignUp(!signup)}></input>
+						<input type='checkbox' onChange={() => handleToggle()}></input>
 						<span className={styles.slider}></span>
 						<span className={styles.rightSwitch}>Sign Up</span>
 					</label>

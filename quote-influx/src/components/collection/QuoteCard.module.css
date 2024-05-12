@@ -7,20 +7,24 @@
     justify-content: space-evenly;
     align-items: center;
     padding: 0rem 2rem;
-    margin: 0 4px;
-    margin-top: 1.2rem;
+    margin: 1rem;
     position: relative;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .removeIcon {
     direction: rtl;
-    padding-right: 1rem;
-    padding-top: 0.5rem;
     width: fit-content;
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    padding: 0.5rem;
+    top: 0.3rem;
+    right: 0.5rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.removeIcon:hover {
+    background-color: #ffbebe;
 }
 
 .cardQuote{

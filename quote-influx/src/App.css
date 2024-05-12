@@ -1,7 +1,9 @@
 a {
     text-decoration: none;
+    color: black
 }
 
-body{
-    /* background-color: #CECECE; */
+body, html{
+    background-color: #e2e2e2;
+    height: 100%;
 }

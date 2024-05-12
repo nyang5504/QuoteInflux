@@ -7,9 +7,11 @@ import Profile from './components/signin/Profile.js';
 import React, { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Collection from './components/collection/Collection.js'
+import TimedOutModal from './components/TimedOutModal.js';
 
 function App() {
 	const [username, setUsername] = useState("");
+    const [error, setError] = useState("");
 	
     useEffect(() => {
         const fetchProfile = async () => {
@@ -36,12 +38,14 @@ function App() {
   	return (
 		<div className="App">
 			<NavBar username={username}/>
+            {error && <TimedOutModal error={error} setError={setError}/>}
 			<Routes>
-				<Route path='/' element={<HomePage/>}>HomePage</Route>
-				<Route path='/account' element={<Profile username={username} setUsername={setUsername}/>}>Profile</Route>
-				<Route path='/signin' element={<SignIn username={username} setUsername={setUsername}/>}>SignIn</Route>
-				<Route path='/collection' element={<Collection/>}>Collection</Route>
+                <Route path='/' element={<HomePage/>}>Homepage</Route>
+				<Route path='/account' element={<Profile username={username} setUsername={setUsername} setError={setError}/>}>Profile</Route>
+				<Route path='/signin' element={<SignIn username={username} setUsername={setUsername} setError={setError}/>}>SignIn</Route>
+				<Route path='/collection' element={<Collection setError={setError}/>}>Collection</Route>
 			</Routes>
+
 		</div>
   	);
 }

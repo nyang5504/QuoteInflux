@@ -1,5 +1,6 @@
 require('dotenv').config();
 const User = require('../models/userModel');
+const Quotes = require('../models/quoteModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -53,12 +54,11 @@ exports.createUser = async (req, res) => {
         try {
             const savedUser = await newUser.save();
             console.log('User saved:', savedUser);
+            return res.status(201).json({message: "Signed up successfully!"});
         } catch (err) {
             console.error('Error saving user:', err);
+            return res.status(400).json({message: "Error saving user"});
         }
-
-        return res.status(201).json({message: "Signed up successfully!"});
-
     } catch (err) {
         return res.status(500).json({ message: err.message });
     }
@@ -69,16 +69,52 @@ exports.logout = async(req, res) => {
     res.status(200).json({ message: 'User signed out.' });
 }
 
-exports.updateUser = async (req, res) => {
-    const {username, password, newpass} = req.body;
+exports.updateUsername = async (req, res) => {
+    const {confirmOldPassword, newUsername} = req.body;
+    const token = req.cookies.jwt;
     try {
-        const user = await User.findOne({username, password});
-        if(user) {
+        if(await User.findOne({username: newUsername})){
+            return res.status(409).json({message: "This username is already taken"});
+        }
+        if(!token) {
+            return res.status(404).json({message: "token not found"});
+        }
+        const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
+        const username = decodedToken.username;
+        const user = await User.findOne({username});
+        const samePass = await bcrypt.compare(confirmOldPassword, user.password);
+        if(samePass) {
             //set new password
+            const updated = await User.findOneAndUpdate({username: username}, {$set:{username: newUsername}});
+            const updatedQuotes = await Quotes.updateMany({username: username}, {$set:{username: newUsername}});
+            res.status(200).json({message: "Updated Username"});
         } else {
             res.status(401).json({message: "Incorrect password!"});
         }
-        const validPassword = await user.comparePassword(password);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+}
+
+
+exports.updatePassword = async (req, res) => {
+    const {confirmOldPassword, newPassword} = req.body;
+    const token = req.cookies.jwt;
+    try {
+        if(!token){
+            return res.status(404).json({message: "token not found"})
+        }
+        const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
+        const username = decodedToken.username;
+        const user = await User.findOne({username});
+        const samePass = await bcrypt.compare(confirmOldPassword, user.password);
+        if(samePass) {
+            //set new password
+            const updated = await User.findOneAndUpdate({username:username}, {$set:{password: newPassword}});
+            res.status(200).json({message: "Updated Password"});
+        } else {
+            res.status(401).json({message: "Incorrect password!"});
+        }
     } catch (err) {
         res.status(500).json({ message: err.message });
     }

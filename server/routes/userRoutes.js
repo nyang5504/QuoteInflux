@@ -8,7 +8,8 @@ router
     .get('/profile', userController.getProfile)
     .post('/signup', userController.createUser)
     .post('/logout', userController.logout)
-    .put('/:id', userController.updateUser)
+    .put('/editUsername', userController.updateUsername)
+    .put('/editPassword', userController.updatePassword)
     .delete('/:id', userController.deleteUser);
 
 module.exports = router;
