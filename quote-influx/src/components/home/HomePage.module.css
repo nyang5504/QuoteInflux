@@ -1,3 +1,19 @@
 #homepage {
     padding: 10px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+
+@media screen and (orientation: landscape) and (min-width: 800px) {
+    #homepage {
+        display: flex;
+        gap: .5rem;
+        justify-content: space-between;
+        max-height: 90vh;
+    }
+
+    #display {
+        width: 100%;
+    }
 }

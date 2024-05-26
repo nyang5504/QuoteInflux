@@ -51,11 +51,9 @@ const QuoteDisplay = ({currentQuote, getRandom}) => {
                     credentials: 'include'
                 });
                 if(response.status == 200) {
-                    console.log("should be yellow");
                     setFavorite(true);
                 } 
                 else{
-                    console.log("should be white");
                     setFavorite(false);
                 }
                 console.log(response);

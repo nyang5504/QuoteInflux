@@ -6,15 +6,19 @@ const Collection = () => {
 
     useEffect(()=> {
         const getCollection = async () => {
-            const response = await fetch("http://localhost:8000/collection/collection", {
+            try{
+                const response = await fetch("http://localhost:8000/collection/collection", {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 credentials: 'include'
-            });
-            const data = await response.json();
-            setMyCollection(data.collectionArr);
+                });
+                const data = await response.json();
+                setMyCollection(data.collectionArr);
+            }catch (error){
+                console.log("error: ", error);
+            }
         }
         getCollection();
     },[]);

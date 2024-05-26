@@ -1,5 +1,7 @@
 .collectionContainer {
-    padding-bottom: 0.5rem;
+    padding: 10px;
+    max-width: 1600px;
+    margin: 0 auto;
 }
 .quotesContainer {
 }
@@ -7,4 +9,11 @@
 .titleContainer {
     font-size: 2rem;
     text-align: center;
+}
+
+@media screen and (orientation: landscape) and (min-width: 800px) {
+    .quotesContainer {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
+    }
 }

@@ -1,15 +1,15 @@
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 #quoteContainer {
     /* position: sticky; */
     background-color: #FFFFFF;
     border-radius: 10px;
-    height: 60vh;
-    min-height: 300px;
-    margin: 10px 0px;
+    height: 65vh;
+    margin: 0.5rem 0;
     display: flex;
     flex-wrap: wrap;
     /* justify-content: center; */
@@ -33,4 +33,10 @@
 .icons {
     margin-left: auto;
     padding-right: 2rem;
+}
+
+@media screen and (orientation: landscape) and (min-width: 800px) {
+    #quoteContainer {
+        margin-bottom: 1.5rem;
+    }
 }

@@ -1,10 +1,9 @@
 #taglist {
-    position: sticky;
     background-color: #FFFFFF;
-    border: 2px solid black;
+    border: 3px solid black;
     border-radius: 10px;
     margin: 10px 0px;
-    padding-top: 0.4rem;
+    padding: 0.5rem 0;
 }
 
 .title {

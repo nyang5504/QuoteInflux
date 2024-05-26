@@ -1,5 +1,7 @@
+*{
+    box-sizing: border-box;
+}
 #sidebar {
-    position: sticky;
     background-color: #FFFFFF;
     border-radius: 10px;
     
@@ -16,7 +18,7 @@
     max-height: 1rem;
     gap: 1rem;
     flex-wrap: wrap;
-    padding: 1rem 2rem;
+    padding: 2rem 2rem;
     overflow: hidden;
     /* transition: max-height 1.0s ease-in-out */
 }
@@ -25,6 +27,38 @@
     text-decoration: underline;
 }
 
+.category:hover{
+    cursor: pointer;
+    color: rgb(98, 146, 146);
+}
+
 #expand-button {
     text-align: end;
+}
+
+@media screen and (orientation: landscape) and (min-width: 800px) {
+    #categories-container {
+        display: block;
+        overflow: auto;
+        max-height: 90%;
+        padding: 0 2rem;
+    }
+    #expand-button{
+        display: none;
+    }
+    .category {
+        margin-bottom: 0.5rem;
+    }
+
+    #sidebar {
+        margin: 0.5rem 0.5rem;
+        min-width: 15rem;
+        max-height: 100%;
+    }
+
+    #top-categories {
+        margin: 1.2rem 0 0.5rem 0;
+        padding: 0;
+        max-height: 10%;
+    }
 }

@@ -11,7 +11,7 @@ exports.getProfile = async (req, res) => {
             const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
             return res.status(200).json({username: decodedToken.username});
         } else {
-            return res.status(404).json({message: "Not Found"});
+            return res.status(204).json({message: "Not Found"});
         }
     } catch (error) {
         return res.status(401).json({message: "Unauthorized"});

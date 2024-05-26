@@ -6,7 +6,7 @@ exports.getCollection = async (req, res) => {
     try {
         const token = req.cookies.jwt;
         if(!token){
-            return res.status(401).json({error: "No token provided"});
+            return res.status(200).json({error: "No token provided"});
         }
         const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
         const username = decodedToken.username;
@@ -24,7 +24,7 @@ exports.getQuote = async (req, res) => {
         const token = req.cookies.jwt;
         const id = req.params.id;
         if(!token) {
-            return res.status(401).json({error: "No token"});
+            return res.status(204).json({error: "No token"});
         }
         const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
         const username = decodedToken.username;
@@ -33,7 +33,7 @@ exports.getQuote = async (req, res) => {
             return res.status(200).json({message: "yellow this"});
         }
         else{
-            return res.status(300).json({message: "white this"});
+            return res.status(204).json({message: "white this"});
         }
     } catch (e) {
         console.log(e);

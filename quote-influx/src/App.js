@@ -23,7 +23,7 @@ function App() {
                     },
                     credentials: "include"
                 })
-                if(response.ok){
+                if(response.status==200){
                     const json = await response.json();
                     setUsername(json.username);
                 }

@@ -38,13 +38,12 @@
 .titleContainer {
     color: var(--text-color);
     text-align: center;
-
     font-size: 1.2rem;
 }
 
 .formContainer {
     display: flex;
-    background-color: #CECECE;
+    background-color: #E2E2E2;
     min-width: 10rem;
     min-height: 70vh;
     justify-content: center;
@@ -160,58 +159,12 @@ input {
     background-color: var(--text-area-color);
 }
 
-@media screen and (max-width: 600px){
-    
+@media screen and (orientation: landscape) and (min-width: 800px) {
+    .signin, .signup {
+        min-width: 25rem;
+    }
+    .inputLabelContainer{
+        display: flex;
+        justify-content: space-between;
+    }
 }
-
-/* .submitButton {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    color: var(--input-text-color);
-    border-radius: 34px;
-    background-color: var(--switch-background-color);
-    padding: 0 15px;
-} */
-
-/*
-.titleContainer {
-    color: var(--text-color);
-    text-align: center;
-    font-size: 1.6rem;
-}
-
-.formContainer {
-    display: flex;
-    min-width: 10rem;
-    height: 70vh;
-    justify-content: center;
-    align-items: center;
-    
-}
-
-.inputAreaContainer{
-    display: flex;
-    gap: 1rem;
-}
-
-.labelContainer {
-    flex: 1;
-    text-align: end;
-}
-
-.inputContainer {
-    flex: 1;
-}
-
-form {
-    color: var(--text-color);
-    background-color: var(--background-color);
-}
-
-input {
-    color: var(--text-color);
-    background-color: var(--text-area-color);
-}
-
-*/

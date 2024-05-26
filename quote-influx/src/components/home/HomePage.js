@@ -18,8 +18,9 @@ const HomePage = () => {
                     }
                 })
                 const arr = await response.json();
-                const unique = [...new Set(arr)];
-                const extracted = unique.map((tagInfo) => {
+                let unique = [...new Set(arr)];
+                unique = [...unique];
+                const extracted = unique.filter(tagInfo => tagInfo.quoteCount>0).map((tagInfo) => {
                     return tagInfo.name;
                 })
                 setTagList(extracted);
@@ -28,7 +29,6 @@ const HomePage = () => {
                 console.log("error: ", error);
             }
         }
-
         fetchTags();
         getRandom();
     }, [])
