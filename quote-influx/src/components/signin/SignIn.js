@@ -22,15 +22,16 @@ const SignIn = ({username, setUsername, error, setError}) => {
 				body: JSON.stringify({ username, password }),
 				credentials: 'include'
 			});
-
+			const data = await response.json();
 			if (!response.ok) {
-				throw new Error('Sign-in failed');
+				setErrMsg(data.message);
+			} else {
+				// Sign-in successful
+				console.log('Sign-in successful');
+				navigate('/');
 			}
-			// Sign-in successful
-			console.log('Sign-in successful');
-			navigate('/');
 		} catch (e) {
-			setErrMsg('Invalid username or password');
+			console.log(e);
 		}
 	};
 
@@ -48,13 +49,17 @@ const SignIn = ({username, setUsername, error, setError}) => {
 				},
 				body: JSON.stringify({ username, password }),
 			})
+			const data = await response.json();
 			if (response.ok) {
 				console.log('Sign-up successful');
 				handleToggle();
 			}
+			if(response.status == 400){
+				setErrMsg(data.message)
+			}
 		}
 		catch (e) {
-			console.error('Error:', e.message);
+			console.log('Error:', e);
 		}
 	}
 
@@ -130,7 +135,7 @@ const SignIn = ({username, setUsername, error, setError}) => {
 						</div>
 					</div>
 				</div>
-				{errMsg && <div>{errMsg}</div>}
+				{errMsg && <div className={styles.errorMsg}>{errMsg}</div>}
 				<div className={styles.buttonsContainer}>
 					<button className={styles.signinSignup} type="submit">{signup ? "Sign Up" : "Sign In"}</button>
 					<label className={styles.toggleSwitch}>

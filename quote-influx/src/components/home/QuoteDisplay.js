@@ -6,8 +6,10 @@ const QuoteDisplay = ({currentQuote, getRandom}) => {
     const [favorite, setFavorite] = useState(false);
 
     const handleFavorite = async() => {
-        favorite ? unsaveQuote() : saveQuote();
-        setFavorite(prev => !prev);
+        const success = favorite ? await unsaveQuote() : await saveQuote();
+        if(success) {
+            setFavorite(prev => !prev);
+        }
     }
 
     const saveQuote = async () => {
@@ -16,12 +18,18 @@ const QuoteDisplay = ({currentQuote, getRandom}) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-            },
-            credentials: 'include',
-            body: JSON.stringify({currentQuote}),
-        });
+                },
+                credentials: 'include',
+                body: JSON.stringify({currentQuote}),
+            });
+            if(response.status==200) {
+                return true;
+            } else {
+                return false;
+            }
         } catch(error) {
             console.log("save favorite: ", error);
+            return false;
         }
     }
 
@@ -34,9 +42,14 @@ const QuoteDisplay = ({currentQuote, getRandom}) => {
                 },
                 credentials: 'include'
             });
-            //console.log(response);
+            if(response.status==200) {
+                return true;
+            } else {
+                return false;
+            }
         } catch(error) {
             console.log("unsave favorite: ", error);
+            return false;
         }
     }
     

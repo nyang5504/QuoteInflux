@@ -18,11 +18,10 @@ const HomePage = () => {
                     }
                 })
                 const arr = await response.json();
-                let unique = [...new Set(arr)];
-                unique = [...unique];
-                const extracted = unique.filter(tagInfo => tagInfo.quoteCount>0).map((tagInfo) => {
+                let extracted = arr.filter(tagInfo => tagInfo.quoteCount>0).map((tagInfo) => {
                     return tagInfo.name;
                 })
+                extracted = [...new Set(extracted)];
                 setTagList(extracted);
             }
             catch (error) {

@@ -70,6 +70,11 @@
 .inputContainer {
 }
 
+.errorMsg{
+    text-align: center;
+    color: #ff0000;
+}
+
 .buttonsContainer {
     display: flex;
     flex-direction: column;

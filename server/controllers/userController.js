@@ -57,7 +57,7 @@ exports.createUser = async (req, res) => {
             return res.status(201).json({message: "Signed up successfully!"});
         } catch (err) {
             console.error('Error saving user:', err);
-            return res.status(400).json({message: "Error saving user"});
+            return res.status(400).json({message: "Error creating account"});
         }
     } catch (err) {
         return res.status(500).json({ message: err.message });
